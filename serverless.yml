@@ -1,0 +1,55 @@
+
+service: scraper
+app: watchlist
+tenant: kimbotron
+
+# ToDo: Provision DynamoDB table
+#resources:
+#  Resources:
+#    Watchlist:
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+
+  stage: ${env:stage}
+  region: us-east-1
+
+  iamRoleStatements:
+    # Add Full DynamoDB permissions, but restrict to specific tables
+    - Effect: "Allow"
+      Action:
+        - dynamodb:*
+      Resource:
+        - "arn:aws:dynamodb:us-east-1:376336607560:table/Watchlist"
+
+package:
+  include:
+    - node_modules/**
+  exclude:
+    - .env
+    - "*.json"
+
+functions:
+  scrape:
+    handler: scraper.scrape
+
+  list:
+    handler: watchlist.list
+    environment:
+      TABLE_NAME: Watchlist
+
+  search:
+    handler: watchlist.search
+    environment:
+      OMDB_API_KEY: ${env:OMDB_API_KEY}
+
+  add:
+    handler: watchlist.add
+    environment:
+      TABLE_NAME: Watchlist
+
+  remove:
+    handler: watchlist.remove
+    environment:
+      TABLE_NAME: Watchlist

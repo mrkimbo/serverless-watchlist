@@ -1,0 +1,26 @@
+{
+  "name": "watchlist",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {
+    "deploy-all": "source .env && sls deploy",
+    "scrape:deploy": "source .env && sls deploy function -f scrape",
+    "scrape:invoke": "source .env && sls invoke local -f scrape",
+    "list:deploy": "source .env && sls deploy function -f list",
+    "list:invoke": "source .env && sls invoke local -f list",
+    "search:deploy": "source .env && sls deploy function -f search",
+    "search:invoke": "source .env && sls invoke local -f search -d '{\"queryStringParameters\":{\"q\":\"predator\"}}'",
+    "add:deploy": "source .env && sls deploy function -f add",
+    "add:invoke": "source .env && sls invoke -f add",
+    "remove:deploy": "source .env && sls deploy function -f remove",
+    "remove:invoke": "source .env && sls invoke -f remove"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.295.0",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2",
+    "uuid": "^3.3.2"
+  }
+}
