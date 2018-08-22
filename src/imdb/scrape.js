@@ -1,12 +1,12 @@
 'use strict';
 
 const request = require('request-promise');
-const { formatResponse } = require('./util');
+const { response } = require('./util');
 
 const USER = 'ur28880908';
 const getWatchListURL = (user) => `https://www.imdb.com/user/${user}/watchlist`;
 
-module.exports.scrape = async ({ queryStringParameters }, context, callback) => {
+module.exports.handler = async ({ queryStringParameters }, context, callback) => {
   const { user = USER } = queryStringParameters || {};
   console.log(`Fetching watchlist for user ${user}`);
   
@@ -30,10 +30,9 @@ module.exports.scrape = async ({ queryStringParameters }, context, callback) => 
     }));
     
     // lambda response format
-    callback(null, formatResponse(200, { entries }));
+    callback(null, response.ok(entries));
     
   } catch (err) {
-    console.log(err.message);
-    callback(null, formatResponse(500, { message: 'The operation failed' }));
+    callback(err, response.error());
   }
 };

@@ -32,24 +32,24 @@ package:
 
 functions:
   scrape:
-    handler: scraper.scrape
-
-  list:
-    handler: watchlist.list
-    environment:
-      TABLE_NAME: Watchlist
+    handler: src/imdb/scrape.handler
 
   search:
-    handler: watchlist.search
+    handler: src/omdb/search.handler
     environment:
       OMDB_API_KEY: ${env:OMDB_API_KEY}
 
+  list:
+    handler: src/watchlist/list.handler
+    environment:
+      TABLE_NAME: Watchlist
+
   add:
-    handler: watchlist.add
+    handler: src/watchlist/add.handler
     environment:
       TABLE_NAME: Watchlist
 
   remove:
-    handler: watchlist.remove
+    handler: src/watchlist/remove.handler
     environment:
       TABLE_NAME: Watchlist

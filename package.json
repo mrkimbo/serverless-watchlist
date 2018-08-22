@@ -7,15 +7,15 @@
   "scripts": {
     "deploy-all": "source .env && sls deploy",
     "scrape:deploy": "source .env && sls deploy function -f scrape",
-    "scrape:invoke": "source .env && sls invoke local -f scrape",
+    "scrape:invoke": "source .env && sls invoke local -f scrape -d '{}'",
     "list:deploy": "source .env && sls deploy function -f list",
-    "list:invoke": "source .env && sls invoke local -f list",
+    "list:invoke": "source .env && sls invoke local -f list -d '{}'",
     "search:deploy": "source .env && sls deploy function -f search",
     "search:invoke": "source .env && sls invoke local -f search -d '{\"queryStringParameters\":{\"q\":\"predator\"}}'",
     "add:deploy": "source .env && sls deploy function -f add",
-    "add:invoke": "source .env && sls invoke -f add",
+    "add:invoke": "source .env && sls invoke -f add -d '{}'",
     "remove:deploy": "source .env && sls deploy function -f remove",
-    "remove:invoke": "source .env && sls invoke -f remove"
+    "remove:invoke": "source .env && sls invoke -f remove -d '{}'"
   },
   "dependencies": {
     "aws-sdk": "^2.295.0",
