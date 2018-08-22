@@ -1,16 +1,16 @@
-'use strict';
-
-const { response, watchlist } = require('./util');
+import db from './dynamodb';
+import response from '../response';
 
 /**
  * Get all watchlist items
  */
-module.exports.handler = async ({ queryStringParameters }, context, callback) => {
+module.exports.handler = async ({ queryStringParameters = {} }, context, callback) => {
   try {
-    const result = await watchlist.list();
+    const result = await db.list();
     callback(null, response.ok(result.Items || []));
 
   } catch (err) {
-    callback(err, response.error());
+    console.error(err);
+    callback(null, response.error());
   }
 };

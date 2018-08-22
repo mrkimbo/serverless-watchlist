@@ -5,22 +5,32 @@
     "node": ">=8"
   },
   "scripts": {
+    "package": "source .env && sls package",
     "deploy-all": "source .env && sls deploy",
     "scrape:deploy": "source .env && sls deploy function -f scrape",
     "scrape:invoke": "source .env && sls invoke local -f scrape -d '{}'",
     "list:deploy": "source .env && sls deploy function -f list",
     "list:invoke": "source .env && sls invoke local -f list -d '{}'",
     "search:deploy": "source .env && sls deploy function -f search",
-    "search:invoke": "source .env && sls invoke local -f search -d '{\"queryStringParameters\":{\"q\":\"predator\"}}'",
+    "search:invoke": "source .env && sls invoke local -f search -d '{\"pathParameters\":{\"query\":\"predator\"}}'",
     "add:deploy": "source .env && sls deploy function -f add",
-    "add:invoke": "source .env && sls invoke -f add -d '{}'",
+    "add:invoke": "source .env && sls invoke -f add -d '{\"body\":{\"title\":\"Predator\",\"year\":1987,\"id\":\"tt0093773\"}}'",
     "remove:deploy": "source .env && sls deploy function -f remove",
-    "remove:invoke": "source .env && sls invoke -f remove -d '{}'"
+    "remove:invoke": "source .env && sls invoke -f remove -d '{\"pathParameters\": {\"item\":\"tt0454830\"}}'"
   },
   "dependencies": {
     "aws-sdk": "^2.295.0",
+    "axios": "^0.18.0",
     "request": "^2.87.0",
     "request-promise": "^4.2.2",
-    "uuid": "^3.3.2"
+    "serverless-webpack": "^5.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0"
   }
 }

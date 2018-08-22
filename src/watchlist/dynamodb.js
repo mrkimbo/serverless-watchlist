@@ -12,8 +12,9 @@ const config = {
   
   // find an item
   find: (id) => ({
-    Key: {
-      id: { S: id },
+    KeyConditionExpression: 'id = :id',
+    ExpressionAttributeValues: {
+      ':id': id,
     },
     ...config.table(),
   }),
@@ -34,7 +35,10 @@ const config = {
  * @param {object} query
  * @return {Promise}
  */
-const exec = (action, query) => db[action](query).promise();
+const exec = (action, query) => {
+  console.log(action, query);
+  return db[action](query).promise();
+};
 
 /**
  * Return existence of item in the table
@@ -42,8 +46,8 @@ const exec = (action, query) => db[action](query).promise();
  * @return {Promise}
  */
 async function contains(id) {
-  const { Item } = await exec('get', config.find(id));
-  return Boolean(Item);
+  const { Count } = await exec('query', config.find(id));
+  return Count > 0;
 }
 
 module.exports = {

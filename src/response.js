@@ -30,6 +30,13 @@ const ok = (body) => formatResponse(200, body);
 const error = (error = 'The operation failed') => formatResponse(500, { error });
 
 /**
+ * Standard 400 response helper
+ * @param {string?} error
+ * @return {object}
+ */
+const badRequest = (error) => formatResponse(400, { error });
+
+/**
  * Custom response with optional body
  * @param {object?} body
  * @return {object}
@@ -40,5 +47,6 @@ const custom = (status, body) => formatResponse(status, body);
 module.exports = {
   ok,
   error,
+  badRequest,
   custom,
 };

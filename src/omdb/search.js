@@ -1,23 +1,39 @@
-'use strict';
+import axios from 'axios';
+import response from '../response';
 
-const { response, OMDB } = require('./util');
+const { OMDB_API_KEY } = process.env;
+const API_ENDPOINT = 'http://www.omdbapi.com/';
+
+/**
+ * Query OMDB database
+ * @param {string} query search term
+ * @param {number} page page number
+ * @return {object}
+ */
+const getSearchParams = (query, page = 1) => ({
+  params: {
+    apiKey: OMDB_API_KEY,
+    s: query,
+    page,
+  }
+});
 
 /**
  * Search for movies
  * Expects request in format: /search/{query}/{page}
  */
-module.exports.handler = async ({ pathParameters}) => {
-  const { query, page = 1 } = pathParameters || {};
+module.exports.handler = async ({ pathParameters = {} }, context, callback) => {
+  const { query, page = 1 } = pathParameters;
   if (!query) {
-    const error = new Error('Missing query parameter');
-    callback(error, response.custom(400, { message: error.message }));
+    callback(null, response.badRequest('Missing query parameter'));
     return;
   }
   
   try {
-    const items = await OMDB.search(query, page);
-    callback(null, response.ok(items));
-  } catch(err) {
-    callback(err, response.ok([]));
+    const { data } = await axios(API_ENDPOINT, getSearchParams(query, page));
+    callback(null, response.ok(data.Search));
+  } catch (err) {
+    console.error(err);
+    callback(null, response.ok([]));
   }
 };

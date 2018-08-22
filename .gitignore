@@ -13,3 +13,4 @@ node_modules/
 
 # serverless tmp package dir
 .serverless
+.webpack

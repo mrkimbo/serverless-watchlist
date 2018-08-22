@@ -3,6 +3,15 @@ service: scraper
 app: watchlist
 tenant: kimbotron
 
+plugins:
+  - serverless-webpack
+
+custom:
+  webpack:
+    webpackConfig: 'webpack.config.js'
+    includeModules: false
+    packager: npm
+
 # ToDo: Provision DynamoDB table
 #resources:
 #  Resources:
@@ -24,8 +33,8 @@ provider:
         - "arn:aws:dynamodb:us-east-1:376336607560:table/Watchlist"
 
 package:
-  include:
-    - node_modules/**
+  individually: true
+
   exclude:
     - .env
     - "*.json"

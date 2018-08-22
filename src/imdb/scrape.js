@@ -1,7 +1,7 @@
 'use strict';
 
 const request = require('request-promise');
-const { response } = require('./util');
+const response = require('../response');
 
 const USER = 'ur28880908';
 const getWatchListURL = (user) => `https://www.imdb.com/user/${user}/watchlist`;
@@ -33,6 +33,7 @@ module.exports.handler = async ({ queryStringParameters }, context, callback) =>
     callback(null, response.ok(entries));
     
   } catch (err) {
-    callback(err, response.error());
+    console.log(err);
+    callback(null, response.error());
   }
 };
