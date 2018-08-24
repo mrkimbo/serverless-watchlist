@@ -31,7 +31,8 @@ module.exports.handler = async ({ pathParameters = {} }, context, callback) => {
   
   try {
     const { data } = await axios(API_ENDPOINT, getSearchParams(query, page));
-    callback(null, response.ok(data.Search));
+    
+    callback(null, response.ok(data.Search || []));
   } catch (err) {
     console.error(err);
     callback(null, response.ok([]));
