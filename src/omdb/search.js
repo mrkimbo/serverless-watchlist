@@ -13,7 +13,7 @@ const API_ENDPOINT = 'http://www.omdbapi.com/';
 const getSearchParams = (query, page = 1) => ({
   params: {
     apiKey: OMDB_API_KEY,
-    s: query,
+    s: decodeURIComponent(query),
     page,
   }
 });
