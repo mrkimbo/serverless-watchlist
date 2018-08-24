@@ -11,10 +11,12 @@
     "scrape:invoke": "source .env && sls invoke local -f scrape -d '{}'",
     "list:deploy": "source .env && sls deploy function -f list",
     "list:invoke": "source .env && sls invoke local -f list -d '{}'",
+    "detail:deploy": "source .env && sls deploy function -f detail",
+    "detail:invoke": "source .env && sls invoke local -f detail -d '{\"pathParameters\": {\"item\":\"tt0454830\"}}'",
     "search:deploy": "source .env && sls deploy function -f search",
     "search:invoke": "source .env && sls invoke local -f search -d '{\"pathParameters\":{\"query\":\"predator\"}}'",
     "add:deploy": "source .env && sls deploy function -f add",
-    "add:invoke": "source .env && sls invoke -f add -d '{\"body\":{\"title\":\"Predator\",\"year\":1987,\"id\":\"tt0093773\"}}'",
+    "add:invoke": "source .env && sls invoke -f add -d '{\"body\":\"{\"id\":\"tt0454830\"}\"}'",
     "remove:deploy": "source .env && sls deploy function -f remove",
     "remove:invoke": "source .env && sls invoke -f remove -d '{\"pathParameters\": {\"item\":\"tt0454830\"}}'"
   },

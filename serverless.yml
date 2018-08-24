@@ -58,6 +58,11 @@ functions:
     environment:
       TABLE_NAME: Watchlist
 
+  detail:
+    handler: src/watchlist/detail.handler
+    environment:
+      TABLE_NAME: Watchlist
+
   remove:
     handler: src/watchlist/remove.handler
     environment:
