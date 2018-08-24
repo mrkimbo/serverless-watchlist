@@ -8,8 +8,8 @@ module.exports.handler = async ({ body }, context, callback) => {
   let item;
   
   try {
-    const { id, title, genre, year } = JSON.parse(body);
-    item = { id, title, genre, year };
+    const { id, title, year, image } = JSON.parse(body);
+    item = { id, title, year, image };
   } catch (err) {
     console.error(err.message);
     callback(null, response.badRequest('Missing or malformed POST body'));
