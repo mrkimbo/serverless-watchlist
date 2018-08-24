@@ -26,7 +26,12 @@ const config = {
   }),
   
   // remove an item
-  remove: (id) => find(id)
+  remove: (id) => ({
+    Key: {
+      id,
+    },
+    ...config.table(),
+  }),
 };
 
 /**
@@ -40,19 +45,9 @@ const exec = (action, query) => {
   return db[action](query).promise();
 };
 
-/**
- * Return existence of item in the table
- * @param {string} id
- * @return {Promise}
- */
-async function contains(id) {
-  const { Count } = await exec('query', config.find(id));
-  return Count > 0;
-}
-
 module.exports = {
-  contains,
   list: () => exec('scan', config.list()),
   add: (props) => exec('put', config.add(props)),
-  remove: (id) => exec('removeItem', config.find(id)),
+  find: (id) => exec('query', config.find(id)),
+  remove: (id) => exec('delete', config.remove(id)),
 };
