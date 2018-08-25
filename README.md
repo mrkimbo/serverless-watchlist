@@ -12,21 +12,26 @@ Test project to create a fully server-less application on AWS combining S3, Lamb
 
 ### Exposed endpoints:
 - **GET: /omdb/search/{query}/{page}**  
+  Test: https://api.kimmr.com/omdb/search/predator  
   Queries OMDB database with path parameter as search term
   
-- **GET: /imdb/scrape**
+- **GET: /imdb/scrape**  
+  Test: https://api.kimmr.com/imdb/scrape  
   Scrapes my personal IMDB watchlist data
   
 - **GET: /watchlist**  
+  Test: https://api.kimmr.com/watchlist  
   Retrieves all watchlist items.  
   Results are currently **not** paginated or limited
   
 - **POST: /watchlist**  
+  Test: https://api.kimmr.com/watchlist  
   Add a new item to the watchlist  
   Must contain 'id' param in json post body  
   Returns **400 error** when item already exists
   
 - **GET: /watchlist/{item}**  
+  Test: https://api.kimmr.com/watchlist/tt0093770  
   Retrieves details of specified item  
   Returns **400 error** when item does not exist
 
