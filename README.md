@@ -15,10 +15,6 @@ Test project to create a fully server-less application on AWS combining S3, Lamb
   Test: https://api.kimmr.com/omdb/search/predator  
   Queries OMDB database with path parameter as search term
   
-- **GET: /imdb/scrape**  
-  Test: https://api.kimmr.com/imdb/scrape  
-  Scrapes my personal IMDB watchlist data
-  
 - **GET: /watchlist**  
   Test: https://api.kimmr.com/watchlist  
   Retrieves all watchlist items.  
