@@ -18,14 +18,17 @@
     "add:deploy": "source .env && sls deploy function -f add",
     "add:invoke": "source .env && sls invoke -f add -d '{\"body\":\"{\"id\":\"tt0454830\"}\"}'",
     "remove:deploy": "source .env && sls deploy function -f remove",
-    "remove:invoke": "source .env && sls invoke -f remove -d '{\"pathParameters\": {\"item\":\"tt0454830\"}}'"
+    "remove:invoke": "source .env && sls invoke -f remove -d '{\"pathParameters\": {\"item\":\"tt0454830\"}}'",
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "dependencies": {
-    "aws-sdk": "^2.295.0",
-    "axios": "^0.18.0",
-    "request": "^2.87.0",
+    "aws-sdk": "^2.814.0",
+    "axios": "^0.21.3",
+    "request": "^2.88.0",
     "request-promise": "^4.2.2",
-    "serverless-webpack": "^5.2.0"
+    "serverless-webpack": "^5.2.0",
+    "@snyk/protect": "latest"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -34,5 +37,6 @@
     "babel-preset-stage-2": "^6.24.1",
     "webpack": "^4.16.5",
     "webpack-cli": "^3.1.0"
-  }
+  },
+  "snyk": true
 }
