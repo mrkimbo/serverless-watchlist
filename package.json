@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "aws-sdk": "^2.295.0",
-    "axios": "^0.18.0",
+    "axios": "^0.27.2",
     "request": "^2.87.0",
     "request-promise": "^4.2.2",
     "serverless-webpack": "^5.2.0"
